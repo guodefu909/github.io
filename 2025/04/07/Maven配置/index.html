@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"guodefu909.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.23.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="Maven 配置优先级顺序  项目级别 (pom.xml) 用户级别 ($&#123;user.home&#125;&#x2F;.m2&#x2F;settings.xml) 全局级别 ($MAVEN_HOME&#x2F;conf&#x2F;settings.xml)   pom.xmlpom.xml配置示例123456789101112131415161718192021222324252627282930313233343536&amp;lt">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Maven配置">
+<meta property="og:url" content="https://guodefu909.github.io/2025/04/07/Maven%E9%85%8D%E7%BD%AE/index.html">
+<meta property="og:site_name" content="郭德福的博客">
+<meta property="og:description" content="Maven 配置优先级顺序  项目级别 (pom.xml) 用户级别 ($&#123;user.home&#125;&#x2F;.m2&#x2F;settings.xml) 全局级别 ($MAVEN_HOME&#x2F;conf&#x2F;settings.xml)   pom.xmlpom.xml配置示例123456789101112131415161718192021222324252627282930313233343536&amp;lt">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-04-07T15:26:13.000Z">
+<meta property="article:modified_time" content="2025-04-07T15:30:42.055Z">
+<meta property="article:author" content="guodefu909">
+<meta property="article:tag" content="郭德福, 博客, guodefu909">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://guodefu909.github.io/2025/04/07/Maven%E9%85%8D%E7%BD%AE/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://guodefu909.github.io/2025/04/07/Maven%E9%85%8D%E7%BD%AE/","path":"2025/04/07/Maven配置/","title":"Maven配置"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Maven配置 | 郭德福的博客</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">郭德福的博客</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Maven-%E9%85%8D%E7%BD%AE%E4%BC%98%E5%85%88%E7%BA%A7%E9%A1%BA%E5%BA%8F"><span class="nav-number">1.</span> <span class="nav-text">Maven 配置优先级顺序</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#pom-xml"><span class="nav-number">2.</span> <span class="nav-text">pom.xml</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#pom-xml%E9%85%8D%E7%BD%AE%E7%A4%BA%E4%BE%8B"><span class="nav-number">2.1.</span> <span class="nav-text">pom.xml配置示例</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#settings-xml"><span class="nav-number">3.</span> <span class="nav-text">settings.xml</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#settings-xml%E9%85%8D%E7%BD%AE%E7%A4%BA%E4%BE%8B"><span class="nav-number">3.1.</span> <span class="nav-text">settings.xml配置示例</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#profile"><span class="nav-number">4.</span> <span class="nav-text">profile</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%BF%80%E6%B4%BB%E4%BC%98%E5%85%88%E7%BA%A7"><span class="nav-number">4.1.</span> <span class="nav-text">激活优先级</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%8F%82%E6%95%B0%E6%BF%80%E6%B4%BB"><span class="nav-number">4.2.</span> <span class="nav-text">命令行参数激活</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%83%E7%B4%A0%E6%BF%80%E6%B4%BB"><span class="nav-number">4.3.</span> <span class="nav-text">&lt;activeProfiles&gt; 元素激活</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8C%89%E6%9D%A1%E4%BB%B6%E6%BF%80%E6%B4%BB"><span class="nav-number">4.4.</span> <span class="nav-text">按条件激活</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#JDK-%E7%89%88%E6%9C%AC"><span class="nav-number">4.4.1.</span> <span class="nav-text">JDK 版本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F"><span class="nav-number">4.4.2.</span> <span class="nav-text">操作系统</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B1%9E%E6%80%A7"><span class="nav-number">4.4.3.</span> <span class="nav-text">属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E5%AD%98%E5%9C%A8"><span class="nav-number">4.4.4.</span> <span class="nav-text">文件存在</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%BB%98%E8%AE%A4%E6%BF%80%E6%B4%BB"><span class="nav-number">4.5.</span> <span class="nav-text">默认激活</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#profiles%E9%85%8D%E7%BD%AE%E7%A4%BA%E4%BE%8B"><span class="nav-number">4.6.</span> <span class="nav-text">profiles配置示例</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#13-Git%E7%AC%94%E8%AE%B0-Maven-module%E6%8F%90%E4%BA%A4%E5%88%B0%E5%8D%95%E7%8B%AC%E7%9A%84-git-%E4%BB%93"><span class="nav-number">5.</span> <span class="nav-text">[[13. Git笔记#Maven module提交到单独的 git 仓]]</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">guodefu909</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">5</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://guodefu909.github.io/2025/04/07/Maven%E9%85%8D%E7%BD%AE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="guodefu909">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="郭德福的博客">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Maven配置 | 郭德福的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Maven配置
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2025-04-07 23:26:13 / 修改时间：23:30:42" itemprop="dateCreated datePublished" datetime="2025-04-07T23:26:13+08:00">2025-04-07</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="Maven-配置优先级顺序"><a href="#Maven-配置优先级顺序" class="headerlink" title="Maven 配置优先级顺序"></a>Maven 配置优先级顺序</h1><blockquote>
+<ol>
+<li>项目级别 (<code>pom.xml</code>)</li>
+<li>用户级别 (<code>$&#123;user.home&#125;/.m2/settings.xml</code>)</li>
+<li>全局级别 (<code>$MAVEN_HOME/conf/settings.xml</code>)</li>
+</ol>
+</blockquote>
+<h1 id="pom-xml"><a href="#pom-xml" class="headerlink" title="pom.xml"></a>pom.xml</h1><h2 id="pom-xml配置示例"><a href="#pom-xml配置示例" class="headerlink" title="pom.xml配置示例"></a>pom.xml配置示例</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">project</span> <span class="attr">xmlns</span>=<span class="string">&quot;http://maven.apache.org/POM/4.0.0&quot;</span></span></span><br><span class="line"><span class="tag">         <span class="attr">xmlns:xsi</span>=<span class="string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span></span></span><br><span class="line"><span class="tag">         <span class="attr">xsi:schemaLocation</span>=<span class="string">&quot;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">modelVersion</span>&gt;</span>4.0.0<span class="tag">&lt;/<span class="name">modelVersion</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.example<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>my-app<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.0-SNAPSHOT<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">properties</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">java.version</span>&gt;</span>17<span class="tag">&lt;/<span class="name">java.version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">spring-boot.version</span>&gt;</span>2.7.18<span class="tag">&lt;/<span class="name">spring-boot.version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">properties</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">        ...</span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">build</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">finalName</span>&gt;</span>$&#123;project.artifactId&#125;<span class="tag">&lt;/<span class="name">finalName</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">plugins</span>&gt;</span></span><br><span class="line">            ...</span><br><span class="line">        <span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">resources</span>&gt;</span></span><br><span class="line">            ...</span><br><span class="line">        <span class="tag">&lt;/<span class="name">resources</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">build</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">repositories</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">repository</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">id</span>&gt;</span>central<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">url</span>&gt;</span>https://repo.maven.apache.org/maven2<span class="tag">&lt;/<span class="name">url</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">repository</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">repositories</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">project</span>&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<h1 id="settings-xml"><a href="#settings-xml" class="headerlink" title="settings.xml"></a>settings.xml</h1><p>settings.xml主要是本地maven仓库的路径的配置和Maven 仓库&#x2F;镜像仓库的配置</p>
+<h2 id="settings-xml配置示例"><a href="#settings-xml配置示例" class="headerlink" title="settings.xml配置示例"></a>settings.xml配置示例</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;utf-8&quot;</span>?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">settings</span> <span class="attr">xmlns</span>=<span class="string">&quot;http://maven.apache.org/SETTINGS/1.0.0&quot;</span>  </span></span><br><span class="line"><span class="tag">    <span class="attr">xmlns:xsi</span>=<span class="string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span>  </span></span><br><span class="line"><span class="tag">    <span class="attr">xsi:schemaLocation</span>=<span class="string">&quot;         http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd&quot;</span>&gt;</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">&lt;!-- 指定本地maven仓库的路径 - 【常用】</span></span><br><span class="line"><span class="comment">    默认值是$&#123;user.home&#125;/.m2/repository。</span></span><br><span class="line"><span class="comment">    建议设置到非系统盘，如：D:/maven/repository --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">localRepository</span>&gt;</span>D:/maven/repository<span class="tag">&lt;/<span class="name">localRepository</span>&gt;</span> </span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!--Maven是否需要和用户交互以获得输入 - 【不常用】</span></span><br><span class="line"><span class="comment">    Maven需要和用户交互以获得输入，则设置成true，反之则应为false。默认为true。--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">interactiveMode</span>&gt;</span>true<span class="tag">&lt;/<span class="name">interactiveMode</span>&gt;</span>  </span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- 指定使用单独配置文件，管理插件版本 - 【不常用】</span></span><br><span class="line"><span class="comment">    Maven使用$&#123;user.home&#125;/.m2/plugin-registry.xml来管理plugin的版本，就设置为true，</span></span><br><span class="line"><span class="comment">    默认为false --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">usePluginRegistry</span>&gt;</span>false<span class="tag">&lt;/<span class="name">usePluginRegistry</span>&gt;</span>  </span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- 是否离线模式 - 【不常用】</span></span><br><span class="line"><span class="comment">    如果构建系统要在离线模式下工作，设置为true，默认为false。</span></span><br><span class="line"><span class="comment">    如果构建服务器因为网络故障或者安全问题不能与远程仓库相连，可以用这个设置 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">offline</span>&gt;</span>false<span class="tag">&lt;/<span class="name">offline</span>&gt;</span>  </span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!--插件组 - 【不常用】</span></span><br><span class="line"><span class="comment">    在pluginGroups元素下面可以定义一系列的pluginGroup元素。</span></span><br><span class="line"><span class="comment">    表示当通过plugin的前缀来解析plugin的时候到哪里寻找。</span></span><br><span class="line"><span class="comment">    pluginGroup元素指定的是plugin的groupId。</span></span><br><span class="line"><span class="comment">    默认情况下，Maven会自动把org.apache.maven.plugins和org.codehaus.mojo</span></span><br><span class="line"><span class="comment">    添加到pluginGroups下。--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">pluginGroups</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">pluginGroup</span>&gt;</span>org.mortbay.jetty<span class="tag">&lt;/<span class="name">pluginGroup</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">pluginGroups</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--例如，有了上面的配置，Maven命令行可以使用简单的命令mvn jetty:run </span></span><br><span class="line"><span class="comment">    执行org.morbay.jetty:jetty-maven-plugin:run --&gt;</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">&lt;!--servers: 服务器认证信息 - 【不常用】</span></span><br><span class="line"><span class="comment">    用于访问需要身份验证的远程仓库或者部署到远程仓库。 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servers</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">server</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!-- 服务器的标识符，</span></span><br><span class="line"><span class="comment">            应该与 pom.xml 中的 &lt;distributionManagement&gt; 部分</span></span><br><span class="line"><span class="comment">            或者 &lt;repositories&gt; 部分中的 id 匹配。 --&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">id</span>&gt;</span>服务器的标识符<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!-- 密码信息在配置文件中是明文存储的，因此要注意安全性。 --&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">username</span>&gt;</span>访问服务器的用户名<span class="tag">&lt;/<span class="name">username</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">password</span>&gt;</span>访问服务器的密码<span class="tag">&lt;/<span class="name">password</span>&gt;</span></span><br><span class="line"></span><br><span class="line">            <span class="comment">&lt;!-- 如果使用 SSH 认证而不是用户名/密码认证，</span></span><br><span class="line"><span class="comment">            可以配置私钥文件路径和对应的密码。</span></span><br><span class="line"><span class="comment">            私钥位置默认$&#123;user.home&#125;/.ssh/id_dsa) --&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">privateKey</span>&gt;</span>私钥文件的路径<span class="tag">&lt;/<span class="name">privateKey</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">passphrase</span>&gt;</span>私钥的密码<span class="tag">&lt;/<span class="name">passphrase</span>&gt;</span></span><br><span class="line"></span><br><span class="line">            <span class="comment">&lt;!-- 在上传文件或目录到服务器时，设置它们的权限。</span></span><br><span class="line"><span class="comment">                合法值是一个三位数字，对应unix文件系统权限，如664/775 --&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">filePermissions</span>&gt;</span>上传文件的权限设置<span class="tag">&lt;/<span class="name">filePermissions</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">directoryPermissions</span>&gt;</span>上传目录的权限设置<span class="tag">&lt;/<span class="name">directoryPermissions</span>&gt;</span></span><br><span class="line"></span><br><span class="line">            <span class="comment">&lt;!-- 自定义的服务器配置 --&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">configuration</span>&gt;</span><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">server</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">servers</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- 配置 Maven 镜像仓库，加速依赖的下载速度  - 【常用】</span></span><br><span class="line"><span class="comment">    相同仓库的镜像按顺序，只会有一个生效--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">mirrors</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">mirror</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">id</span>&gt;</span>huawei<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">url</span>&gt;</span>https://repo.huaweicloud.com/repository/maven/<span class="tag">&lt;/<span class="name">url</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">mirrorOf</span>&gt;</span>central<span class="tag">&lt;/<span class="name">mirrorOf</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">mirror</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">mirror</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">id</span>&gt;</span>tencent<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">url</span>&gt;</span>https://mirrors.cloud.tencent.com/repository/maven/<span class="tag">&lt;/<span class="name">url</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">mirrorOf</span>&gt;</span>central<span class="tag">&lt;/<span class="name">mirrorOf</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">mirror</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">mirror</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">id</span>&gt;</span>aliyun<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!-- central 表示这个镜像替代默认的中央仓库。</span></span><br><span class="line"><span class="comment">            *,!central 表示替代所有仓库，除了中央仓库 --&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">mirrorOf</span>&gt;</span>*<span class="tag">&lt;/<span class="name">mirrorOf</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">url</span>&gt;</span>https://maven.aliyun.com/repository/public<span class="tag">&lt;/<span class="name">url</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">layout</span>&gt;</span>default<span class="tag">&lt;/<span class="name">layout</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">mirror</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">mirrors</span>&gt;</span>  </span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- 配置代理服务器，以便 Maven 在构建过程中通过代理服务器访问外部网络资源 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">proxies</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">proxy</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!-- 代理服务器的标识符 --&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">id</span>&gt;</span>example-proxy<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!-- 是否激活这个代理配置 --&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">active</span>&gt;</span>false<span class="tag">&lt;/<span class="name">active</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!-- 代理服务器使用的协议，例如 http 或 https --&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">protocol</span>&gt;</span>http<span class="tag">&lt;/<span class="name">protocol</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!-- 代理服务器的主机名或 IP 地址 --&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">host</span>&gt;</span>proxy.example.com<span class="tag">&lt;/<span class="name">host</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!-- 代理服务器的端口号 --&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">port</span>&gt;</span>8080<span class="tag">&lt;/<span class="name">port</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!-- 访问代理服务器的用户名（如果需要认证） --&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">username</span>&gt;</span>proxyuser<span class="tag">&lt;/<span class="name">username</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!-- 访问代理服务器的密码（如果需要认证） --&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">password</span>&gt;</span>somepassword<span class="tag">&lt;/<span class="name">password</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!-- 不需要通过代理访问的主机列表，使用 | 分隔多个主机，支持通配符 * --&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">nonProxyHosts</span>&gt;</span>www.baidu.com|*.example.com<span class="tag">&lt;/<span class="name">nonProxyHosts</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">proxy</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">proxies</span>&gt;</span>  </span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- profiles 和 activeProfiles 在后面单独进行说明 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">profiles</span>&gt;</span></span><br><span class="line">        ...</span><br><span class="line">    <span class="tag">&lt;/<span class="name">profiles</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">activeProfiles</span>&gt;</span>  </span><br><span class="line">        <span class="tag">&lt;<span class="name">activeProfile</span>&gt;</span>dev<span class="tag">&lt;/<span class="name">activeProfile</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">activeProfiles</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">settings</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="profile"><a href="#profile" class="headerlink" title="profile"></a>profile</h1><p>profile用于根据不同的环境或条件（如构建目标、操作系统、环境变量等）来定制和激活不同的构建配置。<br>通过使用 <code>profiles</code>，可以在 <code>pom.xml</code> 或 <code>settings.xml</code> 文件中定义多个构建配置，并在构建时根据需要选择激活特定的配置，从而实现灵活的构建管理。</p>
+<h2 id="激活优先级"><a href="#激活优先级" class="headerlink" title="激活优先级"></a>激活优先级</h2><ul>
+<li><strong>命令行激活</strong> (<code>-P</code>) 的优先级最高。</li>
+<li><strong><code>&lt;activeProfiles&gt;</code> 元素</strong> 次于命令行激活。</li>
+<li><strong>按条件自动激活</strong> 再次之，依赖于具体的条件（JDK、OS、属性、文件存在性）。</li>
+<li><strong>默认激活</strong> (<code>&lt;activeByDefault&gt;</code>) 在没有其他 <code>profiles</code> 被激活时生效。</li>
+</ul>
+<h2 id="命令行参数激活"><a href="#命令行参数激活" class="headerlink" title="命令行参数激活"></a>命令行参数激活</h2><ol>
+<li>mvn clean install -Pprod  # 在命令行中激活 <code>prod</code> profile</li>
+<li>在 IntelliJ IDEA 中的 Maven 窗口的 Profiles 目录下勾选相应的 profile，其实是通过命令行参数的方式来激活 profiles。 IDEA 会在运行 Maven 目标时，自动在命令行中附加 <code>-P</code> 参数来激活所选的 profile。</li>
+</ol>
+<h2 id="元素激活"><a href="#元素激活" class="headerlink" title="&lt;activeProfiles&gt; 元素激活"></a><code>&lt;activeProfiles&gt;</code> 元素激活</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">settings</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">activeProfiles</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">activeProfile</span>&gt;</span>prod<span class="tag">&lt;/<span class="name">activeProfile</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">activeProfiles</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">settings</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="按条件激活"><a href="#按条件激活" class="headerlink" title="按条件激活"></a>按条件激活</h2><h3 id="JDK-版本"><a href="#JDK-版本" class="headerlink" title="JDK 版本"></a>JDK 版本</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">activation</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">jdk</span>&gt;</span>1.8<span class="tag">&lt;/<span class="name">jdk</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">activation</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="操作系统"><a href="#操作系统" class="headerlink" title="操作系统"></a>操作系统</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">activation</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">os</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">name</span>&gt;</span>Windows<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">os</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">activation</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">activation</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">name</span>&gt;</span>env<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">value</span>&gt;</span>prod<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">activation</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="文件存在"><a href="#文件存在" class="headerlink" title="文件存在"></a>文件存在</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">activation</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">file</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">exists</span>&gt;</span>path/to/some/file<span class="tag">&lt;/<span class="name">exists</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">file</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">activation</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">profiles</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">profile</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">id</span>&gt;</span>dev<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">activation</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">activeByDefault</span>&gt;</span>true<span class="tag">&lt;/<span class="name">activeByDefault</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">activation</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">profile</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">profile</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">id</span>&gt;</span>prod<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">activation</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>env<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>prod<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">activation</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">profile</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">profiles</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">activeProfiles</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">activeProfile</span>&gt;</span>custom<span class="tag">&lt;/<span class="name">activeProfile</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">activeProfiles</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="默认激活"><a href="#默认激活" class="headerlink" title="默认激活"></a>默认激活</h2><p>没有其他 <code>profiles</code> 被激活时，具有 <code>&lt;activeByDefault&gt;true&lt;/activeByDefault&gt;</code> 的 <code>profile</code> 会被激活。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">profile</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">id</span>&gt;</span>default-profile<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">activation</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">activeByDefault</span>&gt;</span>true<span class="tag">&lt;/<span class="name">activeByDefault</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">activation</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">profile</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+<h2 id="profiles配置示例"><a href="#profiles配置示例" class="headerlink" title="profiles配置示例"></a>profiles配置示例</h2><h1 id="13-Git笔记-Maven-module提交到单独的-git-仓"><a href="#13-Git笔记-Maven-module提交到单独的-git-仓" class="headerlink" title="[[13. Git笔记#Maven module提交到单独的 git 仓]]"></a>[[13. Git笔记#Maven module提交到单独的 git 仓]]</h1>
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2025/04/07/log4j2%E9%85%8D%E7%BD%AE/" rel="prev" title="log4j2配置">
+                  <i class="fa fa-angle-left"></i> log4j2配置
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2025/04/07/Markdown%E8%AF%AD%E6%B3%95/" rel="next" title="Markdown语法">
+                  Markdown语法 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">guodefu909</span>
+  </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>
