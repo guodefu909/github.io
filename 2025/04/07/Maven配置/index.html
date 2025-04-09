@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+<meta name="theme-color" content="#333"><meta name="generator" content="Hexo 7.3.0">
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
-  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <link rel="mask-icon" href="/images/logo.svg" color="#333">
 
 <link rel="stylesheet" href="/css/main.css">
 
@@ -16,8 +16,11 @@
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.36/fancybox/fancybox.css" integrity="sha256-zM8WXtG4eUn7dKKNMTuoWZub++VnSfaOpA/8PJfvTBo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/blue/pace-theme-minimal.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous" defer></script>
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"guodefu909.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.23.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js" defer></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"guodefu909.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.23.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":true,"style":"mac"},"fold":{"enable":true,"height":500},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"buttons","active":"changyan","storage":true,"lazyload":false,"nav":null,"activeClass":"changyan"},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js" defer></script>
 
     <meta name="description" content="Maven 配置优先级顺序  项目级别 (pom.xml) 用户级别 ($&#123;user.home&#125;&#x2F;.m2&#x2F;settings.xml) 全局级别 ($MAVEN_HOME&#x2F;conf&#x2F;settings.xml)   pom.xmlpom.xml配置示例123456789101112131415161718192021222324252627282930313233343536&amp;lt">
 <meta property="og:type" content="article">
@@ -50,19 +53,40 @@
 
 
   
+  <script size="300" alpha="0.6" zIndex="-1" src="https://cdnjs.cloudflare.com/ajax/libs/ribbon.js/1.0.2/ribbon.min.js" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
-<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.6.0/pjax.min.js" integrity="sha256-vxLn1tSKWD4dqbMRyv940UYw4sXgMtYcK6reefzZrao=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.36/fancybox/fancybox.umd.js" integrity="sha256-hiUEBwFEpLF6DlB8sGXlKo4kPZ46Ui4qGpd0vrVkOm4=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script><script src="/js/bookmark.js" defer></script><script src="/js/pjax.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/algoliasearch/5.23.0/lite/builds/browser.umd.js" integrity="sha256-pfKeJRuGRsHDNu078bcMlWdxjw/Vgz5QLC6hyLFw9fA=" crossorigin="anonymous" defer></script><script src="/js/third-party/search/algolia-search.js" defer></script>
+<script class="next-config" data-name="chatra" type="application/json">{"enable":true,"async":true,"id":"ENHhrWwiPvjujjjAo"}</script>
+<script src="/js/third-party/chat/chatra.js" defer></script>
+<script async src="https://call.chatra.io/chatra.js"></script>
+
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"default","dark":"dark"},"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mermaid/11.5.0/mermaid.min.js","integrity":"sha256-2obLuIPcceEhkE3G09G33hBdmE55ivVcZUlcKcGNHjU="}}</script>
+  <script src="/js/third-party/tags/mermaid.js" defer></script>
+
+
+  <script src="/js/third-party/fancybox.js" defer></script>
+
+  <script src="/js/third-party/pace.js" defer></script>
+
+  <script src="/js/third-party/addtoany.js" defer></script>
 
   
 
 
-
-
+  <script class="next-config" data-name="leancloud_visitors" type="application/json">{"enable":true,"app_id":"bYDJYWq6BXkjRf3ZrqyakzaL-gzGzoHsz","app_key":"DABAED4Ga3fy4MW586LD48fm","server_url":"https://bydjywq6.lc-cn-n1-shared.com","security":false}</script>
+  <script src="/js/third-party/statistics/lean-analytics.js" defer></script>
 
 
   
 
-
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"all","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js" defer></script>
 
 
 
@@ -79,6 +103,9 @@
       <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
   <div class="site-nav-toggle">
     <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
     </div>
   </div>
 
@@ -93,15 +120,46 @@
 
   <div class="site-nav-right">
     <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
     </div>
   </div>
 </div>
 
 
 
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">0</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">0</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">5</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
 
 
 
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fab fa-algolia fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
 
 </header>
         
@@ -121,12 +179,14 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Maven-%E9%85%8D%E7%BD%AE%E4%BC%98%E5%85%88%E7%BA%A7%E9%A1%BA%E5%BA%8F"><span class="nav-number">1.</span> <span class="nav-text">Maven 配置优先级顺序</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#pom-xml"><span class="nav-number">2.</span> <span class="nav-text">pom.xml</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#pom-xml%E9%85%8D%E7%BD%AE%E7%A4%BA%E4%BE%8B"><span class="nav-number">2.1.</span> <span class="nav-text">pom.xml配置示例</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#settings-xml"><span class="nav-number">3.</span> <span class="nav-text">settings.xml</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#settings-xml%E9%85%8D%E7%BD%AE%E7%A4%BA%E4%BE%8B"><span class="nav-number">3.1.</span> <span class="nav-text">settings.xml配置示例</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#profile"><span class="nav-number">4.</span> <span class="nav-text">profile</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%BF%80%E6%B4%BB%E4%BC%98%E5%85%88%E7%BA%A7"><span class="nav-number">4.1.</span> <span class="nav-text">激活优先级</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%8F%82%E6%95%B0%E6%BF%80%E6%B4%BB"><span class="nav-number">4.2.</span> <span class="nav-text">命令行参数激活</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%83%E7%B4%A0%E6%BF%80%E6%B4%BB"><span class="nav-number">4.3.</span> <span class="nav-text">&lt;activeProfiles&gt; 元素激活</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8C%89%E6%9D%A1%E4%BB%B6%E6%BF%80%E6%B4%BB"><span class="nav-number">4.4.</span> <span class="nav-text">按条件激活</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#JDK-%E7%89%88%E6%9C%AC"><span class="nav-number">4.4.1.</span> <span class="nav-text">JDK 版本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F"><span class="nav-number">4.4.2.</span> <span class="nav-text">操作系统</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B1%9E%E6%80%A7"><span class="nav-number">4.4.3.</span> <span class="nav-text">属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E5%AD%98%E5%9C%A8"><span class="nav-number">4.4.4.</span> <span class="nav-text">文件存在</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%BB%98%E8%AE%A4%E6%BF%80%E6%B4%BB"><span class="nav-number">4.5.</span> <span class="nav-text">默认激活</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#profiles%E9%85%8D%E7%BD%AE%E7%A4%BA%E4%BE%8B"><span class="nav-number">4.6.</span> <span class="nav-text">profiles配置示例</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#13-Git%E7%AC%94%E8%AE%B0-Maven-module%E6%8F%90%E4%BA%A4%E5%88%B0%E5%8D%95%E7%8B%AC%E7%9A%84-git-%E4%BB%93"><span class="nav-number">5.</span> <span class="nav-text">[[13. Git笔记#Maven module提交到单独的 git 仓]]</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Maven-%E9%85%8D%E7%BD%AE%E4%BC%98%E5%85%88%E7%BA%A7%E9%A1%BA%E5%BA%8F"><span class="nav-text">Maven 配置优先级顺序</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#pom-xml"><span class="nav-text">pom.xml</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#pom-xml%E9%85%8D%E7%BD%AE%E7%A4%BA%E4%BE%8B"><span class="nav-text">pom.xml配置示例</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#settings-xml"><span class="nav-text">settings.xml</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#settings-xml%E9%85%8D%E7%BD%AE%E7%A4%BA%E4%BE%8B"><span class="nav-text">settings.xml配置示例</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#profile"><span class="nav-text">profile</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%BF%80%E6%B4%BB%E4%BC%98%E5%85%88%E7%BA%A7"><span class="nav-text">激活优先级</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%8F%82%E6%95%B0%E6%BF%80%E6%B4%BB"><span class="nav-text">命令行参数激活</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%83%E7%B4%A0%E6%BF%80%E6%B4%BB"><span class="nav-text">&lt;activeProfiles&gt; 元素激活</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8C%89%E6%9D%A1%E4%BB%B6%E6%BF%80%E6%B4%BB"><span class="nav-text">按条件激活</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#JDK-%E7%89%88%E6%9C%AC"><span class="nav-text">JDK 版本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F"><span class="nav-text">操作系统</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B1%9E%E6%80%A7"><span class="nav-text">属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E5%AD%98%E5%9C%A8"><span class="nav-text">文件存在</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%BB%98%E8%AE%A4%E6%BF%80%E6%B4%BB"><span class="nav-text">默认激活</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#profiles%E9%85%8D%E7%BD%AE%E7%A4%BA%E4%BE%8B"><span class="nav-text">profiles配置示例</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#13-Git%E7%AC%94%E8%AE%B0-Maven-module%E6%8F%90%E4%BA%A4%E5%88%B0%E5%8D%95%E7%8B%AC%E7%9A%84-git-%E4%BB%93"><span class="nav-text">[[13. Git笔记#Maven module提交到单独的 git 仓]]</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
         <div class="site-overview-wrap sidebar-panel">
           <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="guodefu909"
+      src="/images/tech.gif">
   <p class="site-author-name" itemprop="name">guodefu909</p>
   <div class="site-description" itemprop="description"></div>
 </div>
@@ -140,9 +200,26 @@
       </div>
   </nav>
 </div>
+  <div class="sidebar-button animated">
+    <button><i class="fa fa-comment"></i>
+      聊天
+    </button>
+  </div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/guodefu909" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;guodefu909" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:guodefu909@126.com" title="E-Mail → mailto:guodefu909@126.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
 
         </div>
       </div>
+        <div class="back-to-top animated" role="button" aria-label="返回顶部">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
     </div>
 
     
@@ -165,7 +242,7 @@
     <link itemprop="mainEntityOfPage" href="https://guodefu909.github.io/2025/04/07/Maven%E9%85%8D%E7%BD%AE/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/tech.gif">
       <meta itemprop="name" content="guodefu909">
     </span>
 
@@ -195,6 +272,27 @@
       <time title="创建时间：2025-04-07 23:26:13 / 修改时间：23:30:42" itemprop="dateCreated datePublished" datetime="2025-04-07T23:26:13+08:00">2025-04-07</time>
     </span>
 
+  
+    <span id="/2025/04/07/Maven%E9%85%8D%E7%BD%AE/" class="post-meta-item leancloud_visitors" data-flag-title="Maven配置" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Changyan：</span>
+    
+    <a title="Maven配置" href="/2025/04/07/Maven%E9%85%8D%E7%BD%AE/#SOHUCS" itemprop="discussionUrl">
+      <span id="sourceId::add2b93c6aa2f68e0ccf23916e3a7fbe" class="cy_cmt_count" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
   
 </div>
 
@@ -255,8 +353,46 @@
     
 
     <footer class="post-footer">
+          <div class="reward-container">
+  <div>请我一杯咖啡吧！</div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/alipay.jpg" alt="guodefu909 支付宝">
+        <span>支付宝</span>
+      </div>
+
+  </div>
+</div>
+
+          <div class="followme">
+  <span>欢迎关注我的其它发布渠道</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+          <span class="social-link">
+            <span class="icon">
+              <i class="fab fa-weixin"></i>
+            </span>
+
+            <span class="label">WeChat</span>
+          </span>
+
+          <img class="social-item-img" src="/images/wechat_channel.png">
+      </div>
+  </div>
+</div>
+
 
         
+  <div class="social-like a2a_kit a2a_kit_size_32 a2a_default_style">
+    <a class="a2a_dd" target="_blank" rel="noopener" href="https://www.addtoany.com/share"></a>
+      <a class="a2a_button_facebook"></a>
+      <a class="a2a_button_twitter"></a>
+  </div>
 
           <div class="post-nav">
             <div class="post-nav-item">
@@ -279,21 +415,22 @@
 
 
 
+    <div class="comments" id="SOHUCS" sid="add2b93c6aa2f68e0ccf23916e3a7fbe"></div>
 </div>
   </main>
 
   <footer class="footer">
     <div class="footer-inner">
 
+  <div class="beian"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">京ICP备11018762号 </a><a href="https://beian.mps.gov.cn/#/query/webSearch?code=11010802020287" rel="noopener" target="_blank">京公网安备号11010802020287 </a>
+  </div>
   <div class="copyright">
     &copy; 
     <span itemprop="copyrightYear">2025</span>
     <span class="with-love">
       <i class="fa fa-heart"></i>
     </span>
-    <span class="author" itemprop="copyrightHolder">guodefu909</span>
-  </div>
-  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+    <span class="author" itemprop="copyrightHolder">copyright © 2025 - 2025 guodefu909. All Rights Reserved. 郭德福 版权所有</span>
   </div>
 
     </div>
@@ -306,14 +443,16 @@
     <span class="toggle-line"></span>
   </div>
   <div class="sidebar-dimmer"></div>
-  <div class="back-to-top" role="button" aria-label="返回顶部">
-    <i class="fa fa-arrow-up fa-lg"></i>
-    <span>0%</span>
-  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+  <a href="https://github.com/guodefu909" class="github-corner" title="在 GitHub 上关注我" aria-label="在 GitHub 上关注我" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
 
 <noscript>
   <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
 </noscript>
+<script class="next-config" data-name="changyan" type="application/json">{"enable":true,"appid":"cyxQ8jzxt","appkey":"prod_6247f357e475d50ce4327aeca5c290d3","count":true}</script>
+<script src="/js/third-party/comments/changyan.js" defer></script>
 
 </body>
 </html>
